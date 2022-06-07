@@ -67,7 +67,7 @@ app.delete("/restaurants/:id", async (req, res) => {
 })
 
 // Update
-app.put("/people/:id", async (req, res) => {
+app.put("/restaurants/:id", async (req, res) => {
     try {
         res.json(await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true}))
     } catch (error) {
@@ -76,7 +76,7 @@ app.put("/people/:id", async (req, res) => {
 })
 
 // Create
-app.post("/people", async (req, res) => {
+app.post("/restaurants", async (req, res) => {
     try {
         res.json(await Restaurant.create(req.body))
     } catch (error) {
@@ -85,7 +85,7 @@ app.post("/people", async (req, res) => {
 })
 
 // Show
-app.get("/people/:id", async (req, res) => {
+app.get("/restaurants/:id", async (req, res) => {
     try {
         res.json(await Restaurant.findById(req.params.id))
     } catch (error) {
