@@ -39,12 +39,59 @@ const RestaurantSchema = new mongoose.Schema({
 const Restaurant = mongoose.model("Restaurant", RestaurantSchema)
 
 // Routes
+// IDUCS
 
 // Test Route
 app.get("/", (req, res) => {
     res.send("App is active")
 })
 
+// Index
+app.get("/restaurants", async (req, res) => {
+    try {
+        // get all restaurants from database
+        res.json(await Restaurant.find({}))
+    } catch (error){
+        // send error to user
+        res.status(400).json(error)
+    }
+})
+
+// Delete
+app.delete("/restaurants/:id", async (req, res) => {
+    try {
+        res.json(await Restaurant.findByIdAndDelete(req.params.id))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+// Update
+app.put("/people/:id", async (req, res) => {
+    try {
+        res.json(await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+// Create
+app.post("/people", async (req, res) => {
+    try {
+        res.json(await Restaurant.create(req.body))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+// Show
+app.get("/people/:id", async (req, res) => {
+    try {
+        res.json(await Restaurant.findById(req.params.id))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 // Listener
 app.listen(PORT, () => {
