@@ -16,7 +16,7 @@ const app = express()
 // Setup Middleware
 app.use(cors())
 app.use(morgan("dev"))
-app.use(express.json)
+app.use(express.json())
 
 // Database connection
 mongoose.connect(process.env.DATABASE_URL)
@@ -43,4 +43,10 @@ const Restaurant = mongoose.model("Restaurant", RestaurantSchema)
 // Test Route
 app.get("/", (req, res) => {
     res.send("App is active")
+})
+
+
+// Listener
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
 })
