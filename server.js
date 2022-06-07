@@ -37,3 +37,10 @@ const RestaurantSchema = new mongoose.Schema({
 })
 
 const Restaurant = mongoose.model("Restaurant", RestaurantSchema)
+
+// Routes
+
+// Test Route
+app.get("/", (req, res) => {
+    res.send("App is active")
+})
